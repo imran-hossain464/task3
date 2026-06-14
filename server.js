@@ -22,8 +22,7 @@ function isNatural(n) {
 }
 
 // IMPORTANT: replace with YOUR converted email route
-const route = "/task3/k_imran_khan464_gmail_com";
-
+const route = "/k_imran_khan464_gmail_com";
 app.get(route, (req, res) => {
     const x = Number(req.query.x);
     const y = Number(req.query.y);
