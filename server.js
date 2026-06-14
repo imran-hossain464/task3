@@ -26,7 +26,7 @@ IMPORTANT:
 Route MUST be EXACT email-converted string
 NO /task3 prefix
 */
-app.get("/k_imran_khan464_gmail_com", (req, res) => {
+app.get("/app/k_imran_khan464_gmail_com", (req, res) => {
     const x = Number(req.query.x);
     const y = Number(req.query.y);
 
