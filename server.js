@@ -1,49 +1,27 @@
-const express = require("express");
-const app = express();
-
-// GCD
 function gcd(a, b) {
-    while (b !== 0) {
-        let temp = b;
-        b = a % b;
-        a = temp;
+    while (b !== 0n) {
+        [a, b] = [b, a % b];
     }
     return a;
 }
 
-// LCM
 function lcm(a, b) {
     return (a * b) / gcd(a, b);
 }
 
-// validate natural numbers
-function isNatural(n) {
-    return Number.isInteger(n) && n > 0;
+function isNatural(str) {
+    return /^[1-9]\d*$/.test(str);
 }
 
-/*
-IMPORTANT:
-Route MUST be EXACT email-converted string
-NO /task3 prefix
-*/
-app.get("/app/k_imran_khan464_gmail_com", (req, res) => {
-    const x = Number(req.query.x);
-    const y = Number(req.query.y);
+app.get("/k_imran_khan464_gmail_com", (req, res) => {
+    const { x, y } = req.query;
 
     if (!isNatural(x) || !isNatural(y)) {
         return res.send("NaN");
     }
 
-    res.send(String(lcm(x, y)));
-});
+    const a = BigInt(x);
+    const b = BigInt(y);
 
-// optional test route
-app.get("/", (req, res) => {
-    res.send("OK");
-});
-
-// start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0", () => {
-    console.log("Server running on port " + PORT);
+    res.send(lcm(a, b).toString());
 });
